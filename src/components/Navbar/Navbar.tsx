@@ -2,7 +2,7 @@ import { Navbar as NavbarBs, Container, Nav, Button } from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
 
 import { navDetails } from './constant'
-import { ShoppingCart } from '../assets/ShoppingCart';
+import { ShoppingCart } from '../../assets/ShoppingCart';
 
 export function Navbar() {
   

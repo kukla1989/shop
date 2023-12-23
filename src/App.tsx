@@ -1,17 +1,22 @@
-import { Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Routes, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
-import { Home, Store, About } from './pages/';
+import { Home, Store, About } from "./pages";
+import { Navbar } from "./components";
+
 function App() {
   return (
-  <Container>
-    <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/about' element={<About/>} />
-      <Route path='/store' element={<Store />} />
-    </Routes>
-  </Container>
-  )
+    <>
+      <Navbar />
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/store" element={<Store />} />
+        </Routes>
+      </Container>
+    </>
+  );
 }
 
-export default App
+export default App;
