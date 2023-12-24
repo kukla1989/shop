@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { IStoreItemProps } from "./type";
 
-import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { useShoppingCart } from "../../context/ShoppingCartContext/ShoppingCartContext";
 
 
 export function StoreItem({ id, name, price, imgUrl }: IStoreItemProps) {
