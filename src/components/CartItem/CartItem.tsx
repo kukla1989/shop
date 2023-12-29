@@ -1,14 +1,14 @@
 import { Button, Stack } from 'react-bootstrap'
 
 import { useShoppingCart } from "../../context";
-import storeItems from "../../data/items.json";
+import { IStoreItems } from '../../context/ShoppingCartContext/type';
 import { formatCurrency } from "../../utilities/formatCurrency";
 
 import { TCartItemProps } from "./type";
 
 export function CartItem({ id, quantity }: TCartItemProps) {
-  const { removeFromCart } = useShoppingCart();
-  const item = storeItems.find((item) => item.id === id);
+  const { removeFromCart, storeItems } = useShoppingCart();
+  const item = storeItems.find((i: IStoreItems) => i.id === id);
   if (item == null) return null;
 
   return (
@@ -31,8 +31,8 @@ export function CartItem({ id, quantity }: TCartItemProps) {
         </div>
       </div>
       <div>{formatCurrency(item.price * quantity)}</div>
-      <Button 
-        variant='outline-danger' 
+      <Button
+        variant='outline-danger'
         size='sm'
         onClick={() => removeFromCart(item.id)}
         >&times;</Button>

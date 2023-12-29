@@ -3,14 +3,14 @@ import { TNavDetails } from './type'
 export const navDetails: TNavDetails[] = [
     {
         name: 'Home',
-        url : '/'
+        url : '/react-ts-shopping-cart/'
     },
     {
         name: 'Store',
-        url : '/store'
+        url : '/react-ts-shopping-cart/store'
     },
     {
-        name: 'Aboute',
-        url : '/about'
+        name: 'About',
+        url : '/react-ts-shopping-cart/about'
     }
   ]

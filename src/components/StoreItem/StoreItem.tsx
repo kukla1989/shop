@@ -3,11 +3,11 @@ import { Button, Card } from "react-bootstrap";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { IStoreItemProps } from "./type";
 
-import { useShoppingCart } from "../../context/ShoppingCartContext/ShoppingCartContext";
+import { useShoppingCart } from "../../context";
 
 
 export function StoreItem({ id, name, price, imgUrl }: IStoreItemProps) {
-  const { 
+  const {
     getItemQuantity,
     increaseItemQuantity,
     decreaseItemQuantity,
@@ -28,7 +28,7 @@ export function StoreItem({ id, name, price, imgUrl }: IStoreItemProps) {
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button 
+            <Button
               className="w-100"
               onClick={() => increaseItemQuantity(id)}
             >
@@ -49,8 +49,8 @@ export function StoreItem({ id, name, price, imgUrl }: IStoreItemProps) {
                 </div>
                 <Button onClick={() => increaseItemQuantity(id)}>+</Button>
               </div>
-              <Button 
-                variant='danger' 
+              <Button
+                variant='danger'
                 size='sm'
                 onClick={() => removeFromCart(id)}
               >Remove</Button>

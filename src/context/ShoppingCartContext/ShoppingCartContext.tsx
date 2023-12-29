@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createContext, useContext } from "react";
+
 import { ShoppingCart } from "../../components/";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { TShoppingCartProviderProps, TShoppingCartContext, TCartItem } from './type'
+import { TShoppingCartProviderProps, TShoppingCartContext, TCartItem, IStoreItems } from './type'
+
+import storeItemDatas from '../../data/items.json'
 
 const ShoppingCartContext = createContext({} as TShoppingCartContext );
 
@@ -11,8 +14,17 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartProvider({ children } : TShoppingCartProviderProps ) {
+  const [storeItems, setStoreItems] = useState<IStoreItems[]>([])
   const [cartItems, setCartItems] = useLocalStorage<TCartItem[]>('shopping-cart',[])
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+      setStoreItems(storeItemDatas);
+  }, [])
+
+  useEffect(() => {
+    if(cartItems.length === 0) setIsOpen(false)
+  }, [cartItems])
 
   const openCart = () => setIsOpen(true)
   const closeCart = () => setIsOpen(false)
@@ -50,12 +62,13 @@ export function ShoppingCartProvider({ children } : TShoppingCartProviderProps )
   }
 
   return (
-    <ShoppingCartContext.Provider 
+    <ShoppingCartContext.Provider
       value={{
         getItemQuantity,
         increaseItemQuantity,
         decreaseItemQuantity,
         removeFromCart,
+        storeItems,
         cartItems,
         cartQuantity,
         openCart,
